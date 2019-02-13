@@ -1,25 +1,49 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
-
-export class OnePhoneViewComponent extends BaseComponent{
-
-  show(phone) {
-    this._phone = phone;
+export class OnePhoneViewComponent extends BaseComponent {
+ 
+  constructor({ element, phone, onBackSelect, onAddSelect }) {
+    super({ element });
+    this.element = element;
     this._render();
-    super.show();
+    this.onBackSelect = onBackSelect;
+    this.onAddSelect = onAddSelect;
+    this.phone = phone;
+    this._element.addEventListener('click', this._handleClick.bind(this));
+    this.isVisible();
+    
   }
+  isVisible(status, phone){
+    if(status)
+    {
+      this._phone = phone;
+      this._render();
+      super.show();
+    }
+    else{
+      super.hide();
+    }
+  }
+ 
+  
 
-  _render() {
-    this._element.innerHTML = `
+
+    _handleClick (event){
+    const backButton = this._element.querySelector('#Btn-back');
+    const addButton = this._element.querySelector('#Btn-add');
+    if (event.target === backButton) this.onBackSelect();
+    if (event.target === addButton) this.onAddSelect();
+    }
+  
+
+      
+      _render() {
+        this._element.innerHTML = `
+        this is OnePhoneViewComponent
        <img class="phone" src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
-
-    <button>Back</button>
-    <button>Add to basket</button>
-
-
+    <button id="Btn-back">Back</button>
+    <button id='Btn-add'>Add to basket</button>
     <h1>Motorola XOOM™ with Wi-Fi</h1>
-
     <p>Motorola XOOM with Wi-Fi has a super-powerful dual-core processor and Android™ 3.0 (Honeycomb) — the Android platform designed specifically for tablets. With its 10.1-inch HD widescreen display, you’ll enjoy HD video in a thin, light, powerful and upgradeable tablet.</p>
-
     <ul class="phone-thumbs">
       <li>
         <img src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
@@ -40,7 +64,6 @@ export class OnePhoneViewComponent extends BaseComponent{
         <img src="img/phones/motorola-xoom-with-wi-fi.5.jpg">
       </li>
     </ul>
-
     <ul class="specs">
       <li>
         <span>Availability and Networks</span>
@@ -144,6 +167,6 @@ export class OnePhoneViewComponent extends BaseComponent{
         <dd>Sensors: proximity, ambient light, barometer, gyroscope</dd>
       </li>
     </ul>
-    `
-  }
+    `;
+    }
 }

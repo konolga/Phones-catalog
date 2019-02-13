@@ -6,7 +6,7 @@ export class PhonesCatalogComponent extends BaseComponent {
     this.phones = phones;
     this.onPhoneSelect = onPhoneSelect;
     this._render();
-    this._element.addEventListener('click', this._handleClick.bind(this))
+    this._element.addEventListener('click', this._handleClick.bind(this));
   }
 
   _handleClick({ target }) {
@@ -19,6 +19,7 @@ export class PhonesCatalogComponent extends BaseComponent {
 
   _render() {
     this._element.innerHTML = `
+    this is PhonesCatalogComponent
           <ul class="phones">
           ${this.phones.reduce((html, phone) => {
       return `${html}     <li class="thumbnail" data-id=${phone.id}>

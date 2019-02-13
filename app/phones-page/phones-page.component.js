@@ -1,5 +1,5 @@
 import { PhonesCatalogComponent } from './phone-catalog/phone-catalog.component.js';
-import { OnePhoneViewComponent } from './one-phone-view/one-phone-view.component.js';
+import { OnePhoneViewComponent } from "./one-phone-view/OnePhoneViewComponent.js";
 import { PhonesPageService } from './phones-page.service.js';
 
 export class PhonesPageComponent {
@@ -15,19 +15,31 @@ export class PhonesPageComponent {
       onPhoneSelect: (phoneId)=>{
         const phoneDetails = this._phoneService.getPhonesById(phoneId);
         this._phoneCatalog.hide();
-        this._phoneViewer.show(phoneDetails);
+        this._phoneViewer.isVisible(true,phoneDetails);
+      }
+      
+    });
+   
+
+    
+    this._phoneViewer = new OnePhoneViewComponent({
+      element: this.element.querySelector('#item'),
+      onBackSelect: () =>{
+        this._phoneViewer.isVisible(false);
+        this._phoneCatalog.show();
+      },
+      onAddSelect:(phoneId)=>{
+//TODO: add phone to cardview component
       }
     });
 
-    this._phoneViewer = new OnePhoneViewComponent({
-      element: this.element.querySelector('#item'),
-    });
 
   }
+ 
 
   _render() {
     this.element.innerHTML = ` <div class="row">
-
+this is PhonesPageComponent
     <!--Sidebar-->
     <div class="col-md-2">
       <section>
@@ -45,7 +57,7 @@ export class PhonesPageComponent {
         </p>
       </section>
 
-      <section>
+      <section></section>
         <p>Shopping Cart</p>
         <ul>
           <li>Phone 1</li>
