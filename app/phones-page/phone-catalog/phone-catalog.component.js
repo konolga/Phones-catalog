@@ -35,6 +35,7 @@ export class PhonesCatalogComponent extends BaseComponent {
           <p>${phone.snippet}</p>
         </li>`
     }, '')}
+    
    
       </ul>
     `

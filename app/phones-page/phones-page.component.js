@@ -31,7 +31,7 @@ export class PhonesPageComponent
 
     
     this._phoneViewer = new OnePhoneViewComponent({
-      
+
       element: this.element.querySelector('#item'),
       onBackSelect: () =>{
         this._phoneViewer.isVisible(false);
@@ -45,10 +45,10 @@ export class PhonesPageComponent
 
     });
 
-this._cartViewer = new CartComponent({
+    this._cartViewer = new CartComponent({
     element: this.element.querySelector('#cart')
 
-  });
+    });
 
 
   }

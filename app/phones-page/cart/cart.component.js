@@ -7,20 +7,30 @@ export class CartComponent extends BaseComponent{
     this.element = element;
     this._render();
 
+    this._element.addEventListener('click', this._handleClick.bind(this));
+    
   }
+
 
 addToCart(name){
   const list = this._element.querySelector('ul');
   let itemAdded = document.createElement('li');
   let removeBtn = document.createElement('a');
-  removeBtn.class = "x-btn";
+  removeBtn.className  = "x-btn";
   removeBtn.innerHTML='&#x2716';
  
   itemAdded.innerHTML=name;
+  itemAdded.appendChild(removeBtn);
   list.appendChild(itemAdded);
-  list.appendChild(removeBtn);
 }
 
+_handleClick( event ) {
+  const removeBtn = event.target.closest('.x-btn');
+   if (event.target===removeBtn) {
+    event.target.parentElement.remove();
+   }
+ 
+}
 
 
 
