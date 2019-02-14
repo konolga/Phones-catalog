@@ -61,7 +61,7 @@ export class OnePhoneViewComponent extends BaseComponent {
         <img src="assets/img/phones/motorola-xoom-with-wi-fi.4.jpg">
       </li>
       <li>
-        <img src="img/phones/motorola-xoom-with-wi-fi.5.jpg">
+        <img src="assets/img/phones/motorola-xoom-with-wi-fi.5.jpg">
       </li>
     </ul>
     <ul class="specs">

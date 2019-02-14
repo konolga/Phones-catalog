@@ -1,8 +1,10 @@
 import { PhonesCatalogComponent } from './phone-catalog/phone-catalog.component.js';
 import { OnePhoneViewComponent } from "./one-phone-view/OnePhoneViewComponent.js";
 import { PhonesPageService } from './phones-page.service.js';
+import { CartComponent }  from './cart/cart.component.js';
 
-export class PhonesPageComponent {
+export class PhonesPageComponent 
+{
   constructor({ element }) {
     this.element = element;
     this._render();
@@ -30,8 +32,17 @@ export class PhonesPageComponent {
       },
       onAddSelect:(phoneId)=>{
 //TODO: add phone to cardview component
+
+const phoneShortDetails = this._phoneService.getPhonesById(phoneId).name;3
+this._cartViewer.addToCart(phoneShortDetails);
+
       }
     });
+
+this._cartViewer = new CartComponent({
+    element: this.element.querySelector('#cart')
+
+  });
 
 
   }
@@ -57,18 +68,9 @@ this is PhonesPageComponent
         </p>
       </section>
 
-      <section></section>
-        <p>Shopping Cart</p>
-        <ul>
-          <li>Phone 1</li>
-          <li>Phone 2</li>
-          <li>Phone 3</li>
-        </ul>
-      </section>
-    </div>
-
     <!--Main content-->
     <div class="col-md-10" >
+    <div id="cart"></div>
  <div id="catalog"></div>
  <div id="item"></div>
 
