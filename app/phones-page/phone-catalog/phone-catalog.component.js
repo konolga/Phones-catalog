@@ -1,20 +1,22 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
 
 export class PhonesCatalogComponent extends BaseComponent {
-  constructor({ element, phones, onPhoneSelect }) {
+  constructor({ element, phones, onPhoneSelect, onAddSelect }) {
     super({ element });
     this.phones = phones;
     this.onPhoneSelect = onPhoneSelect;
+    this.onAddSelect = onAddSelect;
     this._render();
     this._element.addEventListener('click', this._handleClick.bind(this));
   }
 
-  _handleClick({ target }) {
-    const liElement = target.closest('.thumbnail');
-    if (!liElement) {
-      return;
-    }
-    this.onPhoneSelect(liElement.dataset.id);
+  _handleClick( event ) {
+    const btnElement = event.target.closest('.phones__btn-buy-wrapper');
+    const liElement = event.target.closest('.thumbnail');
+   
+    if (event.target===btnElement) this.onAddSelect(liElement.dataset.id);
+     if(event.target===liElement) this.onPhoneSelect(liElement.dataset.id);
+   
   }
 
   _render() {
@@ -26,11 +28,9 @@ export class PhonesCatalogComponent extends BaseComponent {
           <a href="#!/phones/${phone.id}" class="thumb">
             <img alt=${phone.id} src=${`assets/${phone.imageUrl}`}>
           </a>
-          <div class="phones__btn-buy-wrapper">
-            <a class="btn btn-success">
+          <button class="phones__btn-buy-wrapper">
               Add
-            </a>
-          </div>
+          </button>
           <a href="#!/phones/${phone.id}">${phone.name}</a>
           <p>${phone.snippet}</p>
         </li>`

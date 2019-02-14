@@ -17,14 +17,14 @@ body {
 .phones {
   list-style: none;
   width: fit-content;
-  padding-left: 315px;
+
 }
 
 .phones li {
   clear: both;
   height: 115px;
   padding-top: 15px;
-  width: 40em;
+
 }
 
 .thumb {
@@ -32,7 +32,6 @@ body {
   margin: -0.5em 1em 1.5em 0;
   padding-bottom: 1em;
   height: 100px;
-
   width: 100px;
 }
 
@@ -110,3 +109,5 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+

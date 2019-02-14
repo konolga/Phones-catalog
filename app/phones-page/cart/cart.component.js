@@ -12,8 +12,13 @@ export class CartComponent extends BaseComponent{
 addToCart(name){
   const list = this._element.querySelector('ul');
   let itemAdded = document.createElement('li');
+  let removeBtn = document.createElement('a');
+  removeBtn.class = "x-btn";
+  removeBtn.innerHTML='&#x2716';
+ 
   itemAdded.innerHTML=name;
   list.appendChild(itemAdded);
+  list.appendChild(removeBtn);
 }
 
 

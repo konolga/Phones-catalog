@@ -14,29 +14,35 @@ export class PhonesPageComponent
     this._phoneCatalog = new PhonesCatalogComponent({
       element: this.element.querySelector('#catalog'),
       phones: this._phoneService.getAllPhones(),
+
       onPhoneSelect: (phoneId)=>{
         const phoneDetails = this._phoneService.getPhonesById(phoneId);
         this._phoneCatalog.hide();
         this._phoneViewer.isVisible(true,phoneDetails);
-      }
+      },
+
+      onAddSelect: (phoneId)=>{
+        const phoneShortDetails = this._phoneService.getPhonesById(phoneId).name;
+        this._cartViewer.addToCart(phoneShortDetails);
+       }
       
     });
    
 
     
     this._phoneViewer = new OnePhoneViewComponent({
+      
       element: this.element.querySelector('#item'),
       onBackSelect: () =>{
         this._phoneViewer.isVisible(false);
         this._phoneCatalog.show();
       },
+
       onAddSelect:(phoneId)=>{
-//TODO: add phone to cardview component
-
-const phoneShortDetails = this._phoneService.getPhonesById(phoneId).name;3
-this._cartViewer.addToCart(phoneShortDetails);
-
+      const phoneShortDetails = this._phoneService.getPhonesById(phoneId).name;
+      this._cartViewer.addToCart(phoneShortDetails);
       }
+
     });
 
 this._cartViewer = new CartComponent({
@@ -52,7 +58,7 @@ this._cartViewer = new CartComponent({
     this.element.innerHTML = ` <div class="row">
 this is PhonesPageComponent
     <!--Sidebar-->
-    <div class="col-md-2">
+   
       <section>
         <p>
           Search:
@@ -69,12 +75,15 @@ this is PhonesPageComponent
       </section>
 
     <!--Main content-->
-    <div class="col-md-10" >
+
+    <div class="col-md-4">
     <div id="cart"></div>
+    </div>
+
+    <div class="col-md-8">
  <div id="catalog"></div>
  <div id="item"></div>
+ </div>`;
 
-    </div>
-  </div>`;
   }
 }

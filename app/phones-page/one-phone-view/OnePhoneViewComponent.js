@@ -23,8 +23,6 @@ export class OnePhoneViewComponent extends BaseComponent {
       super.hide();
     }
   }
- 
-  
 
 
     _handleClick (event){
