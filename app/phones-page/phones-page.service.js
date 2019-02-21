@@ -152,7 +152,7 @@ const phones = [
     "name": "Motorola CHARM\u2122 with MOTOBLUR\u2122",
     "snippet": "Motorola CHARM fits easily in your pocket or palm.  Includes MOTOBLUR service."
   }
-]
+];
 const phone = {
   "additionalFeatures": "Adobe\u00ae Flash\u00ae Player compatible; 1.3MP front-facing camera for video chat; eReader pre-loaded; Swype text input technology\r\n",
   "android": {
@@ -221,14 +221,36 @@ const phone = {
     "flash": "16384MB",
     "ram": "640MB"
   }
-}
+};
 
 export class PhonesPageService {
 
-  getAllPhones() {
-    return phones;
+  getAllPhones({ text, orderBy }) {
+    //we want to use promise in case data has to be pulled everytime, we want to make it async
+    return new Promise((res) => {
+        const searchedPhones = this._searchByText(phones, text);
+        const sortedPhones = this._sort(searchedPhones, orderBy);
+        res(sortedPhones);
+      });
+    }
+
+
+  _searchByText(phones, searchText){
+    if(!searchText){
+      return phones;
+    }
+    return phones.filter (phone =>{
+      //String#toLowerCase for getting comparable values,
+      //String#includes for checking two string, if one contains the other.
+      return phone.name.toLowerCase().includes(searchText.toLowerCase());
+    });
   }
 
+  _sort(phones, orderBy){
+
+    return [...phones] //spread operator
+    .sort ((phone1, phone2)=>{ return phone1[orderBy]>phone2[orderBy] ? 1 : -1; });
+  }
   getPhonesById(id) {
     return phone;
   }

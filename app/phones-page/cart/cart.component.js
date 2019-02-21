@@ -1,52 +1,44 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
 
 export class CartComponent extends BaseComponent{
-  constructor({element}){
+  constructor({ element }) {
     super({ element });
-
-    this.element = element;
+    this._items = {};
     this._render();
-
-    this._element.addEventListener('click', this._handleClick.bind(this));
-    
+    this.on('click', '.remove', (event)=>{
+     this._remove(event.delegateTarget.dataset.id);
+    });
   }
 
 
-addToCart(name){
-  const list = this._element.querySelector('ul');
-  let itemAdded = document.createElement('li');
-  let removeBtn = document.createElement('a');
-  removeBtn.className  = "x-btn";
-  removeBtn.innerHTML='&#x2716';
- 
-  itemAdded.innerHTML=name;
-  itemAdded.appendChild(removeBtn);
-  list.appendChild(itemAdded);
-}
+  add(phoneId) {
+    if(!this._items[phoneId]){
+      this._items[phoneId] = 0;
+    }
+    this._items[phoneId] += 1;
+    this._render();
+  }
 
-_handleClick( event ) {
-  const removeBtn = event.target.closest('.x-btn');
-   if (event.target===removeBtn) {
-    event.target.parentElement.remove();
-   }
- 
-}
+  _remove(phoneId) {
+    this._items[phoneId] -= 1;
+    if(this._items[phoneId] === 0){
+     delete this._items[phoneId];
+    }
+    this._render();
+  }
 
-
-
-_render() {
-    this.element.innerHTML = ` 
-    <div class="row">
-    this is CartComponent
-    <!--Sidebar-->
-
-      <section>
+  _render() {
+    this._element.innerHTML = `
+      <section >
         <p>Shopping Cart</p>
         <ul>
-
+           ${Object.entries(this._items).reduce((html, [phoneId, quantity])=>{
+             return `${html} <li>${phoneId} (${quantity})
+  <button class="remove" data-id="${phoneId}">x</button>
+</li>`
+    },'')}
         </ul>
       </section>
-
-    </div>`;
+    `;
   }
 }

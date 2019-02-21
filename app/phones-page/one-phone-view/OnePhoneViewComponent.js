@@ -1,21 +1,183 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
 export class OnePhoneViewComponent extends BaseComponent {
  
-  constructor({ element, phone, onBackSelect, onAddSelect }) {
+  constructor({ element }) {
     super({ element });
+
+    //using delegate
+    this.on('click', '.go-back', () => {
+      this.emit('back');
+    });
+    this.on('click', '.add-to-cart', (event) => {
+      this.emit('add', this._phone.id);
+    });
+    this.on('click', '.image-link', (event) => {
+      this._currentImage = event.delegateTarget.src;
+      this._render();
+    });
+ 
+  
+
+
+
+/*  
     this.element = element;
     this._render();
     this.onBackSelect = onBackSelect;
     this.onAddSelect = onAddSelect;
+    this.onLargeViewSelect= onLargeViewSelect; 
     this.phone = phone;
     this._element.addEventListener('click', this._handleClick.bind(this));
     this.isVisible();
+*/
+
     
   }
-  isVisible(status, phone){
+
+  show(phone) {
+    this._phone = phone;
+    this._currentImage = `assets/${this._phone.images[0]}`;
+    this._render();
+    super.show();
+  }
+
+
+      _render() {
+
+        this._element.innerHTML = `
+        <img class="phone" src="${this._currentImage}">
+
+    <button class="go-back">Back</button>
+    <button class="add-to-cart">Add to cart</button>
+
+    <h1>${this._phone.name}</h1>
+    <p>${this._phone.description}</p>
+
+    <ul class="phone-thumbs">
+    ${this._phone.images.reduce((item, nextImage) => {
+    return ` ${item}<li>
+    <img class="image-link"  src='assets/${nextImage}'">
+    </li>
+    `;
+    }, '')}
+    </ul>
+
+
+
+
+    <ul class="specs">
+      <li>
+        <span>Availability and Networks</span>
+        <dl>
+          <dt>${this._phone.availability}</dt>
+          <dd></dd>
+        </dl>
+      </li>
+      <li>
+        <span>Battery</span>
+        <dl>
+          <dt>Type</dt>
+          <dd>${this._phone.battery.type}</dd>
+          <dt>Talk Time</dt>
+          <dd>${this._phone.battery.talkTime}</dd>
+          <dt>Standby time (max)</dt>
+          <dd>${this._phone.battery.standbyTime}</dd>
+        </dl>
+      </li>
+      <li>
+      <span>Storage and Memory</span>
+      <dl>
+        <dt>RAM</dt>
+        <dd>${this._phone.storage.ram}</dd>
+        <dt>Internal Storage</dt>
+        <dd>${this._phone.storage.flash}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Connectivity</span>
+      <dl>
+        <dt>Network Support</dt>
+        <dd></dd>
+        <dt>WiFi</dt>
+        <dd>${this._phone.connectivity.wifi}</dd>
+        <dt>Bluetooth</dt>
+        <dd>${this._phone.connectivity.bluetooth}</dd>
+        <dt>Infrared</dt>
+        <dd>${Boolean(this._phone.connectivity.infrared) ? '✓' : '✘' }</dd>
+        <dt>GPS</dt>
+        <dd>${Boolean(this._phone.connectivity.gps) ? '✓' : '✘'}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Android</span>
+      <dl>
+        <dt>OS Version</dt>
+        <dd>${this._phone.android.os}</dd>
+        <dt>UI</dt>
+        <dd>${this._phone.android.ui}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Size and Weight</span>
+      <dl>
+        <dt>Dimensions</dt>
+        ${this._phone.sizeAndWeight.dimensions.map((item)=> `<dd>${item}</dd>`).join('')}
+        <dt>Weight</dt>
+        <dd>${this._phone.sizeAndWeight.weight}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Display</span>
+      <dl>
+        <dt>Screen size</dt>
+        <dd>${this._phone.display.screenSize}</dd>
+        <dt>Screen resolution</dt>
+        <dd>${this._phone.display.screenResolution}</dd>
+        <dt>Touch screen</dt>
+        <dd>${Boolean(this._phone.display.touchScreen) ? '✓' : '✘'}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Hardware</span>
+      <dl>
+        <dt>CPU</dt>
+        <dd>${this._phone.hardware.cpu}</dd>
+        <dt>USB</dt>
+        <dd>${this._phone.hardware.usb}</dd>
+        <dt>Audio / headphone jack</dt>
+        <dd>${this._phone.hardware.audioJack}</dd>
+        <dt>FM Radio</dt>
+        <dd>${Boolean(this._phone.hardware.fmRadio) ? '✓' : '✘'}</dd>
+        <dt>Accelerometer</dt>
+        <dd>${Boolean(this._phone.hardware.accelerometer) ? '✓' : '✘'}✓</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Camera</span>
+      <dl>
+        <dt>Primary</dt>
+        <dd>${this._phone.camera.primary}</dd>
+        <dt>Features</dt>
+        <dd>${this._phone.camera.features}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Additional Features</span>
+      <dd>${this._phone.additionalFeatures}</dd>
+    </li>
+  </ul>
+    `;
+    }
+}
+
+
+//old code
+  
+/*   isVisible(status, phone){
     if(status)
     {
       this._phone = phone;
+      this._currentImage = `assets/${this._phone.images[0]}`;
       this._render();
       super.show();
     }
@@ -28,143 +190,15 @@ export class OnePhoneViewComponent extends BaseComponent {
     _handleClick (event){
     const backButton = this._element.querySelector('#Btn-back');
     const addButton = this._element.querySelector('#Btn-add');
+    const imgElement = this._element.querySelector('.phone-thumbs img');
+
     if (event.target === backButton) this.onBackSelect();
     if (event.target === addButton) this.onAddSelect();
-    }
-  
+    if (event.target === imgElement) this.onLargeViewSelect();
 
-      
-      _render() {
-        this._element.innerHTML = `
-        this is OnePhoneViewComponent
-       <img class="phone" src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
-    <button id="Btn-back">Back</button>
-    <button id='Btn-add'>Add to basket</button>
-    <h1>Motorola XOOM™ with Wi-Fi</h1>
-    <p>Motorola XOOM with Wi-Fi has a super-powerful dual-core processor and Android™ 3.0 (Honeycomb) — the Android platform designed specifically for tablets. With its 10.1-inch HD widescreen display, you’ll enjoy HD video in a thin, light, powerful and upgradeable tablet.</p>
-    <ul class="phone-thumbs">
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.0.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.1.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.2.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.3.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.4.jpg">
-      </li>
-      <li>
-        <img src="assets/img/phones/motorola-xoom-with-wi-fi.5.jpg">
-      </li>
-    </ul>
-    <ul class="specs">
-      <li>
-        <span>Availability and Networks</span>
-        <dl>
-          <dt>Availability</dt>
-          <dd></dd>
-        </dl>
-      </li>
-      <li>
-        <span>Battery</span>
-        <dl>
-          <dt>Type</dt>
-          <dd>Other ( mAH)</dd>
-          <dt>Talk Time</dt>
-          <dd>24 hours</dd>
-          <dt>Standby time (max)</dt>
-          <dd>336 hours</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Storage and Memory</span>
-        <dl>
-          <dt>RAM</dt>
-          <dd>1000MB</dd>
-          <dt>Internal Storage</dt>
-          <dd>32000MB</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Connectivity</span>
-        <dl>
-          <dt>Network Support</dt>
-          <dd></dd>
-          <dt>WiFi</dt>
-          <dd>802.11 b/g/n</dd>
-          <dt>Bluetooth</dt>
-          <dd>Bluetooth 2.1</dd>
-          <dt>Infrared</dt>
-          <dd>✘</dd>
-          <dt>GPS</dt>
-          <dd>✓</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Android</span>
-        <dl>
-          <dt>OS Version</dt>
-          <dd>Android 3.0</dd>
-          <dt>UI</dt>
-          <dd>Honeycomb</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Size and Weight</span>
-        <dl>
-          <dt>Dimensions</dt>
-          <dd>249.1 mm (w)</dd>
-          <dd>167.8 mm (h)</dd>
-          <dd>12.9 mm (d)</dd>
-          <dt>Weight</dt>
-          <dd>708.0 grams</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Display</span>
-        <dl>
-          <dt>Screen size</dt>
-          <dd>10.1 inches</dd>
-          <dt>Screen resolution</dt>
-          <dd>WXGA (1200 x 800)</dd>
-          <dt>Touch screen</dt>
-          <dd>✓</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Hardware</span>
-        <dl>
-          <dt>CPU</dt>
-          <dd>1 GHz Dual Core Tegra 2</dd>
-          <dt>USB</dt>
-          <dd>USB 2.0</dd>
-          <dt>Audio / headphone jack</dt>
-          <dd>3.5mm</dd>
-          <dt>FM Radio</dt>
-          <dd>✘</dd>
-          <dt>Accelerometer</dt>
-          <dd>✓</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Camera</span>
-        <dl>
-          <dt>Primary</dt>
-          <dd>5.0 megapixels</dd>
-          <dt>Features</dt>
-          <dd>Flash, Video</dd>
-        </dl>
-      </li>
-      <li>
-        <span>Additional Features</span>
-        <dd>Sensors: proximity, ambient light, barometer, gyroscope</dd>
-      </li>
-    </ul>
-    `;
+        onLargeViewSelect(){
+      this.element.querySelector('.phone').src = imgElement.src;
     }
-}
+      
+    }
+   */

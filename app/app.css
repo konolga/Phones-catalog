@@ -60,6 +60,9 @@ img.phone:first-child {
   display: block;
 }
 
+.bigImg{
+  display: block;
+}
 
 ul.phone-thumbs {
   margin: 0;
