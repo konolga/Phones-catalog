@@ -25,11 +25,19 @@ _initCatalog(){
       element: this.element.querySelector('#catalog')
     });
     this._showFilteredPhones();
-    this._phoneCatalog.subscribe('phone-select', (phoneId) => {
-        const phoneDetails = this._phoneService.getPhonesById(phoneId);
+    this._phoneCatalog.subscribe('phone-select', async (phoneId) => {
+      try {
+              //promise
+        const phone = await this._phoneService
+        .getPhonesById(phoneId)
         this._phoneCatalog.hide();
-        this._phoneViewer.show(phoneDetails);
+        this._phoneViewer.show(phone);
+      }
+      catch (err) {
+        console.log(err);
+      }
       });
+
       this._phoneCatalog.subscribe('add',(phoneId)=>{
         this._shoppingCart.add(phoneId);
       });
@@ -106,12 +114,11 @@ _initFilter() {
 
 
 _showFilteredPhones(){
-  const filteredPhonesPromise = this._phoneService.getAllPhones(
-    this.state
+  const filteredPhonesPromise = this._phoneService.getAllPhones(this.state);
     // (filteredPhones) => {
     //   this._phoneCatalog.show(filteredPhones);
     // }
-  );
+  
   filteredPhonesPromise
     .then(filteredPhones => {
       this._phoneCatalog.show(filteredPhones);
