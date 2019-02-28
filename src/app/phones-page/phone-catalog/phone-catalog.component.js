@@ -24,7 +24,7 @@ show(phones){
 }
   _render() {
     this._element.innerHTML = `
-    this is PhonesCatalogComponent
+
     <ul class="phones">
     ${this.phones.reduce((html, phone) => {
 return `${html}     <li class="thumbnail" data-id=${phone.id}>

@@ -131,7 +131,7 @@ _showFilteredPhones(){
 
   _render() {
     this.element.innerHTML = ` <div class="row">
-this is PhonesPageComponent
+
     <!--Sidebar-->
 
     <div id="filter"></div>
