@@ -1,3 +1,5 @@
+//this file is not relevant anymore because we
+// now pull data from github directly
 let http = require('http');
 let static = require('node-static');
 const port = 5000;
