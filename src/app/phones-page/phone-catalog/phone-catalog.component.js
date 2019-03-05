@@ -1,6 +1,8 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
+import template from './phone-catalog.template.hbs';
+import './phone-catalog.style.css'
 
-export class PhonesCatalogComponent extends BaseComponent {
+ export class PhonesCatalogComponent extends BaseComponent {
   constructor({ element, phones }) {
     super({ element });
     
@@ -23,26 +25,7 @@ show(phones){
   super.show();
 }
   _render() {
-    this._element.innerHTML = `
-
-    <ul class="phones">
-    ${this.phones.reduce((html, phone) => {
-return `${html}     <li class="thumbnail" data-id=${phone.id}>
-    <a href="#/phones/${phone.id}" class="thumb phone-link">
-      <img alt=${phone.id} src=${`assets/${phone.imageUrl}`}>
-    </a>
-    <div class="phones__btn-buy-wrapper">
-      <a class="btn btn-success add-to-cart">
-        Add
-      </a>
-    </div>
-    <a href="#/phones/${phone.id}" class="phone-link">${phone.name}</a>
-    <p>${phone.snippet}</p>
-  </li>`;
-}, '')}
-
-</ul>
-`;
+    this._element.innerHTML = template({phones: this.phones})
  }
 }
 
