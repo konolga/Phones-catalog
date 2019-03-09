@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/konolga/phones-js-10122018/issues"
   },
-  "homepage": "https://github.com/konolga/phones-js-10122018#readme",
+  "homepage": "https://konolga.github.io/phones-js-10122018/",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
