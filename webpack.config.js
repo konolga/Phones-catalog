@@ -11,7 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'), //__dirname-->from global
         filename: 'bundle.js'
     },
-
+    
     watch: true, // after the initial build continue to watch for changes, otherwise use npx webpack or ./node_modules/.bin/webpack
     devtool: "source-map", //to see original source while debugging
     watchOptions: {

@@ -1,7 +1,7 @@
 {
-  "name": "Phones-catalog",
+  "name": "phones-js-10122018",
   "version": "1.0.0",
-  "description": "Static pages of phone catalogue\r https://konolga.github.io/Phones-catalog/",
+  "description": "Static pages of phone catalogue\r https://konolga.github.io/phones-js-10122018/",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/konolga/Phones-catalog.git"
+    "url": "git+https://github.com/konolga/phones-js-10122018.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/konolga/Phones-catalog/issues"
+    "url": "https://github.com/konolga/phones-js-10122018/issues"
   },
-  "homepage": "https://github.com/konolga/Phones-catalog#readme",
+  "homepage": "https://github.com/konolga/phones-js-10122018#readme",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
