@@ -2,6 +2,9 @@
 export default BASE_URL;
 const BASE_URL = 'https://konolga.github.io/Phones-catalog';
 
+
+      
+
 export class PhonesPageService {
 
   async  getAllPhones({ text, orderBy }) {
