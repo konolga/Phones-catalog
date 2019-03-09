@@ -1,0 +1,41 @@
+{
+  "name": "phones-js-10122018",
+  "version": "1.0.0",
+  "description": "Static pages of phone catalogue\r https://konolga.github.io/phones-js-10122018/",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "npm run build -- -w",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konolga/phones-js-10122018.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konolga/phones-js-10122018/issues"
+  },
+  "homepage": "https://github.com/konolga/phones-js-10122018#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@webpack-cli/init": "^0.1.3",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "handlebars": "^4.1.0",
+    "handlebars-loader": "^1.7.1",
+    "html-webpack-plugin": "^3.2.0",
+    "node-static": "^0.7.11",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.3.4"
+  }
+}

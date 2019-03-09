@@ -1,0 +1,149 @@
+
+ 
+    <img alt="{{currentImage}}" class="phone" 
+    src="{{currentImage}}">
+
+    <button class="go-back">Back</button>
+    <button class="add-to-cart">Add to cart</button>
+    
+
+    <h1>{{phone.name}}</h1>
+    <p>{{phone.description}}</p>
+
+    
+   {{#each phone.images as |image|}}
+   <ul class="phone-thumbs">
+   <li> <img alt="{{phone.id}}" class="image-link"  
+   src="https://konolga.github.io/phones-js-10122018/src/assets/{{image}}"> </li>
+    
+    </ul>
+{{/each}}
+
+    <ul class="specs">
+      <li>
+        <span>Availability and Networks</span>
+        <dl>
+          <dt>{{phone.availability}}</dt>
+          <dd></dd>
+        </dl>
+      </li>
+      <li>
+        <span>Battery</span>
+        <dl>
+          <dt>Type</dt>
+          <dd>{{phone.battery.type}}</dd>
+          <dt>Talk Time</dt>
+          <dd>{{phone.battery.talkTime}}</dd>
+          <dt>Standby time (max)</dt>
+          <dd>{{phone.battery.standbyTime}}</dd>
+        </dl>
+      </li>
+      <li>
+      <span>Storage and Memory</span>
+      <dl>
+        <dt>RAM</dt>
+        <dd>{{phone.storage.ram}}</dd>
+        <dt>Internal Storage</dt>
+        <dd>{{phone.storage.flash}}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Connectivity</span>
+      <dl>
+        <dt>Network Support</dt>
+        <dd></dd>
+        <dt>WiFi</dt>
+        <dd>{{phone.connectivity.wifi}}</dd>
+        <dt>Bluetooth</dt>
+        <dd>{{phone.connectivity.bluetooth}}</dd>
+        <dt>Infrared</dt>
+
+        {{#if phone.connectivity.infrared}}
+        <dd> '✓' </dd>
+        {{else}}  <dd> '✘' </dd>
+        {{/if}}
+
+        <dt>GPS</dt>
+        {{#if phone.connectivity.gps}}
+        <dd> '✓' </dd>
+        {{else}}  <dd> '✘' </dd>
+        {{/if}}
+
+        
+      </dl>
+    </li>
+    <li>
+      <span>Android</span>
+      <dl>
+        <dt>OS Version</dt>
+        <dd>{{phone.android.os}}</dd>
+        <dt>UI</dt>
+        <dd>{{phone.android.ui}}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Size and Weight</span>
+      <dl>
+        <dt>Dimensions</dt>
+        <dd>{{phone.sizeAndWeight.dimensions}}
+        <dt>Weight</dt>
+        <dd>{{phone.sizeAndWeight.weight}}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Display</span>
+      <dl>
+        <dt>Screen size</dt>
+        <dd>{{phone.display.screenSize}}</dd>
+        <dt>Screen resolution</dt>
+        <dd>{{phone.display.screenResolution}}</dd>
+        
+        <dt>Touch screen</dt>
+        {{#if phone.display.touchScreen}}
+        <dd> '✓' </dd>
+        {{else}}  <dd> '✘' </dd>
+        {{/if}}
+
+        
+      </dl>
+    </li>
+    <li>
+      <span>Hardware</span>
+      <dl>
+        <dt>CPU</dt>
+        <dd>{{phone.hardware.cpu}}</dd>
+        <dt>USB</dt>
+        <dd>{{phone.hardware.usb}}</dd>
+        <dt>Audio / headphone jack</dt>
+        <dd>{{phone.hardware.audioJack}}</dd>
+
+        <dt>FM Radio</dt>
+         {{#if phone.hardware.fmRadio}}
+        <dd> '✓' </dd>
+        {{else}}  <dd> '✘' </dd>
+        {{/if}}
+
+        
+        <dt>Accelerometer</dt>
+         {{#if phone.hardware.accelerometer}}
+        <dd> '✓' </dd>
+        {{else}}  <dd> '✘' </dd>
+        {{/if}}
+
+       
+      </dl>
+    </li>
+    <li>
+      <span>Camera</span>
+      <dl>
+        <dt>Primary</dt>
+        <dd>{{phone.camera.primary}}</dd>
+        <dt>Features</dt>
+        <dd>{{phone.camera.features}}</dd>
+      </dl>
+    </li>
+    <li>
+      <span>Additional Features</span>
+      <dd>{{phone.additionalFeatures}}</dd>
+    </li>
+  </ul>
