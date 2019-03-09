@@ -39,7 +39,7 @@ export class OnePhoneViewComponent extends BaseComponent {
 
   show(phone) {
     this.phone = phone;
-    this._currentImage = `https://konolga.github.io/Phones-catalog/tree/gh-pages/src/assets/img${phone.images[0]}`;
+    this._currentImage = `https://konolga.github.io/Phones-catalog/src/assets/img${phone.images[0]}`;
     this._render();
     super.show();
    
