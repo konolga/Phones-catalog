@@ -1,6 +1,6 @@
 
 export default BASE_URL;
-const BASE_URL = 'https://konolga.github.io/phones-js-10122018';
+const BASE_URL = 'https://konolga.github.io/Phones-catalog';
 
 export class PhonesPageService {
 
