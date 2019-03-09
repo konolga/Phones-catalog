@@ -1,6 +1,6 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
 import template from './OnePhoneViewComponent.hbs';
-const BASE_URL = 'https://konolga.github.io/phones-js-10122018/src/assets';
+const BASE_URL = 'https://konolga.github.io/phones-js-10122018/assets';
 
 export class OnePhoneViewComponent extends BaseComponent {
  

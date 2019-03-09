@@ -11,7 +11,7 @@ export class PhonesPageService {
     try{
     //we want to use promise in case data has to be pulled everytime, we want to make it async
    // return new Promise((res) => {
-    const phones = await fetch(`https://konolga.github.io/phones-js-10122018/mocked-data/phones/phones.json`)
+    const phones = await fetch(`https://konolga.github.io/phones-js-10122018/phones/phones.json`)
       .then((res) => res.json());
     const searchedPhones = this._searchByText(phones, text);
     const sortedPhones = this._sort(searchedPhones, orderBy);
