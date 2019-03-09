@@ -1,11 +1,12 @@
 //commonJS export => export
 //node_modules/.bin/webpack or npx webpack
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
  
 module.exports = {
     mode: 'none',
-    entry: './src',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'), //__dirname-->from global
         filename: 'bundle.js'
@@ -40,6 +41,10 @@ module.exports = {
                 }
             }
         ]
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [new UglifyJsPlugin()]
     },
     plugins: [
         new HtmlWebpackPlugin({

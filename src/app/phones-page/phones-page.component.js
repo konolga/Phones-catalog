@@ -3,7 +3,7 @@ import { OnePhoneViewComponent } from './one-phone-view/OnePhoneViewComponent.js
 import { PhonesPageService } from './phones-page.service.js';
 import { CartComponent }  from './cart/cart.component.js';
 import { FilterComponent } from './Filters-view/filter-component.js';
-
+import './index.css';
 
 export class PhonesPageComponent 
 {

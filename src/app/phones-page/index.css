@@ -2,7 +2,7 @@
 
 body {
   padding-top: 20px;
-  background-color: lightgoldenrodyellow;
+  background-color:wheat;
 }
 
 .phone-images {
@@ -60,13 +60,11 @@ img.phone:first-child {
   display: block;
 }
 
-.bigImg{
-  display: block;
-}
 
 ul.phone-thumbs {
   margin: 0;
-  list-style: none;
+  display: inline;
+
 }
 
 ul.phone-thumbs li {

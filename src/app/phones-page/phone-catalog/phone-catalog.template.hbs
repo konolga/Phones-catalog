@@ -1,11 +1,10 @@
 
-
-`<ul class="phones">
+<ul class="phones">
     {{#each phones as |phone|}}   
 
     <li class="thumbnail" data-id={{phone.id}}>
     <a href="#/phones/{{phone.id}}" class="thumb phone-link">
-      <img alt="{{phone.id}}" src="assets/{{phone.imageUrl}}">
+      <img alt="{{phone.id}}" src="{{baseUrl}}/src/assets/{{phone.imageUrl}}">
     </a>
     <div class="phones__btn-buy-wrapper">
       <a class="btn btn-success add-to-cart">
@@ -19,5 +18,5 @@
   </li>
 {{/each}}
 
-</ul>`
+</ul>
 
