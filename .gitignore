@@ -1,5 +1,9 @@
 .idea
 node_modules
+<<<<<<< HEAD
 dist
 .vs
 .vscode
+=======
+dist
+>>>>>>> 2c67dc0a9f252feca396be1daf9e4bf5994b77d6
