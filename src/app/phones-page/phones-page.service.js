@@ -1,6 +1,4 @@
 
-export default BASE_URL;
-const BASE_URL = 'https://konolga.github.io/phones-js-10122018';
 
 
       
@@ -11,7 +9,7 @@ export class PhonesPageService {
     try{
     //we want to use promise in case data has to be pulled everytime, we want to make it async
    // return new Promise((res) => {
-    const phones = await fetch(`https://konolga.github.io/phones-js-10122018/phones/phones.json`)
+    const phones = await fetch(`../src/phones/phones.json`)
       .then((res) => res.json());
     const searchedPhones = this._searchByText(phones, text);
     const sortedPhones = this._sort(searchedPhones, orderBy);
@@ -42,7 +40,7 @@ export class PhonesPageService {
 
   async getPhonesById(id) {
     try{
-    return await fetch(`${BASE_URL}/mocked-data/phones/${id}.json`)
+    return await fetch(`../src/phones/${id}.json`)
     .then((res) => res.json());
     }
     catch (err) {

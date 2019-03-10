@@ -1,6 +1,6 @@
 import { BaseComponent } from '../../common/components/base/base.component.js';
 import template from './phone-catalog.template.hbs';
-import  BASE_URL from '../phones-page.service.js'
+
 
 
  export class PhonesCatalogComponent extends BaseComponent {
@@ -26,8 +26,7 @@ show(phones){
   super.show();
 }
   _render() {
-    this._element.innerHTML = template({phones: this.phones, 
-      baseUrl:BASE_URL})
+    this._element.innerHTML = template({phones: this.phones})
  }
 }
 
