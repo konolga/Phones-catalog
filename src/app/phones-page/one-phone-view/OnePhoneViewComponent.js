@@ -12,7 +12,7 @@ export class OnePhoneViewComponent extends BaseComponent {
       this.emit('back');
     });
     this.on('click', '.add-to-cart', (event) => {
-      this.emit('add', this._phone.id);
+      this.emit('add', this.phone.id);
     });
     this.on('click', '.image-link', (event) => {
       this._currentImage = event.delegateTarget.src;
